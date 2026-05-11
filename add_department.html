@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Department - Salamtak</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:linear-gradient(135deg,#0F2854,#1C4D8D);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+        }
+
+        .container{
+            width:100%;
+            max-width:600px;
+            background:white;
+            padding:35px;
+            border-radius:18px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        h2{
+            text-align:center;
+            color:#1C4D8D;
+            margin-bottom:30px;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+            color:#333;
+        }
+
+        input{
+            width:100%;
+            padding:14px;
+            border:1px solid #ccc;
+            border-radius:10px;
+            font-size:15px;
+            transition:0.3s;
+        }
+
+        input:focus{
+            border-color:#1C4D8D;
+            outline:none;
+            box-shadow:0 0 8px rgba(28,77,141,0.2);
+        }
+
+        .btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:linear-gradient(135deg,#1C4D8D,#0F2854);
+            color:white;
+            font-size:15px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            transform:translateY(-2px);
+        }
+
+        .back{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            text-decoration:none;
+            color:#1C4D8D;
+            font-weight:bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🏥 Add Department</h2>
+
+    <form method="POST" action="/add_department">
+
+        <div class="form-group">
+            <label>Department Name</label>
+            <input type="text" name="name" placeholder="Enter department name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" name="description" placeholder="Enter description" required>
+        </div>
+
+        <button type="submit" class="btn">
+            ➕ Add Department
+        </button>
+
+    </form>
+
+    <a href="/departments" class="back">
+        ⬅ Back to Departments
+    </a>
+
+</div>
+
+</body>
+</html>

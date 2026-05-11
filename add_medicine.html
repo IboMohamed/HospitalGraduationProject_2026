@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Medicine - Salamtak</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: Arial;
+            background: linear-gradient(135deg, #0F2854, #1C4D8D);
+            margin: 0;
+            padding: 40px 15px;
+        }
+
+        .container{
+            max-width: 550px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            text-align: center;
+            color: #1C4D8D;
+            margin-bottom: 25px;
+        }
+
+        .form-group{
+            margin-bottom: 18px;
+        }
+
+        label{
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        textarea{
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        textarea{
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn{
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #1C4D8D, #0F2854);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover{
+            background: linear-gradient(135deg, #163d73, #091c3a);
+            transform: translateY(-2px);
+        }
+
+        .back {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #1C4D8D;
+            font-weight: bold;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+        .add {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #1C4D8D;
+            font-weight: bold;
+        }
+
+        .add:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>➕ Add Medicine</h2>
+
+    <form method="POST" action="/add_medicine">
+
+        <div class="form-group">
+            <label>Medicine Name</label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter medicine name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+
+            <textarea
+                name="description"
+                placeholder="Medicine description"
+                required
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+
+            <input
+                type="number"
+                step="0.01"
+                name="price"
+                placeholder="Enter price"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Stock Quantity</label>
+
+            <input
+                type="number"
+                name="stock"
+                placeholder="Enter stock quantity"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn">
+            Add Medicine
+        </button>
+
+    </form>
+
+    <a href="/admin" class="back">
+        ⬅ Back to Admin Panel
+    </a>
+
+</div>
+
+</body>
+</html>

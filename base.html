@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Salamtak</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='icon2.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: linear-gradient(135deg, #0F2854, #1C4D8D);
+            color: #333;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h2 {
+            margin: 0;
+            color: #1C4D8D;
+        }
+
+        .logout {
+            text-decoration: none;
+            background: #1C4D8D;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #1C4D8D;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f2f6ff;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: white;
+        }
+
+        .admin { background: #e74c3c; }
+        .doctor { background: #27ae60; }
+        .patient { background: #3498db; }
+        .pharmacist { background: #9b59b6; }
+
+        .approved { background: #2ecc71; }
+        .pending { background: #f39c12; }
+
+        .title {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .add {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #1C4D8D;
+            font-weight: bold;
+        }
+
+        .add:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h2>Salamtak Admin Panel</h2>
+    <a href="/logout" class="logout">Logout</a>
+</div>
+
+<h2 class="title">Users Management</h2>
+
+<div class="container">
+    <div class="card">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[5] }}</td>
+                <td>{{ user[6] }}</td>
+
+                <!-- Role Badge -->
+                <td>
+                    <span class="badge 
+                        {% if user[11] == 'admin' %}admin{% endif %}
+                        {% if user[11] == 'doctor' %}doctor{% endif %}
+                        {% if user[11] == 'patient' %}patient{% endif %}
+                        {% if user[11] == 'pharmacist' %}pharmacist{% endif %}
+                    ">
+                        {{ user[11] }}
+                    </span>
+                </td>
+
+                <!-- Status Badge -->
+                <td>
+                    <span class="badge {% if user[12] == 'approved' %}approved{% else %}pending{% endif %}">
+                        {{ user[12] }}
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

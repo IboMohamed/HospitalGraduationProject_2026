@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicines Stock</title>
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#0F2854,#1C4D8D);
+    min-height:100vh;
+    padding:40px 20px;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.header h2{
+    color:#1C4D8D;
+    font-size:32px;
+}
+
+.header p{
+    color:gray;
+}
+
+/* SEARCH */
+.search-box{
+    margin-bottom:25px;
+}
+
+.search-form{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    align-items:center;
+}
+
+.search-form input{
+    width:80%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.search-form input:focus{
+    border-color:#1C4D8D;
+    outline:none;
+    box-shadow:0 0 8px rgba(28,77,141,0.2);
+}
+
+.search-btn{
+    padding:14px 22px;
+    border:none;
+    border-radius:10px;
+    background:#1C4D8D;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.search-btn:hover{
+    background:#163d73;
+}
+
+/* TABLE */
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#1C4D8D;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+tr:hover{
+    background:#f5f9ff;
+}
+
+/* BUTTONS */
+.action-btn{
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:8px;
+    font-weight:bold;
+    display:inline-block;
+    margin:2px;
+}
+
+.edit{
+    background:#e8f1ff;
+    color:#1C4D8D;
+}
+
+.delete{
+    background:#ffe5e5;
+    color:#dc3545;
+}
+
+/* EMPTY STATE */
+.empty{
+    text-align:center;
+    padding:25px;
+    color:gray;
+}
+
+/* BACK */
+.back{
+    display:inline-block;
+    margin-top:25px;
+    text-decoration:none;
+    color:#1C4D8D;
+    font-weight:bold;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .search-form{
+        flex-direction:column;
+    }
+
+    .search-form input{
+        width:100%;
+    }
+
+    .search-btn{
+        width:100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h2>💊 Medicines Stock</h2>
+        <p>Manage and search medicines inventory</p>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+
+        <form method="GET" action="/medicines_stock" class="search-form">
+
+            <input type="text"
+                   name="search"
+                   placeholder="Search by name, description or price..."
+                   value="{{ search if search else '' }}">
+
+            <button type="submit" class="search-btn">
+                🔍 Search
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrapper">
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+
+            {% if medicines and medicines|length > 0 %}
+
+                {% for m in medicines %}
+                <tr>
+                    <td>{{ m[0] }}</td>
+                    <td><strong>{{ m[1] }}</strong></td>
+                    <td>{{ m[2] }}</td>
+                    <td>{{ m[3] }}</td>
+                    <td>{{ m[4] }}</td>
+                    <td>
+
+                        <a href="/update_medicine/{{ m[0] }}" class="action-btn edit">
+                            ✏ Edit
+                        </a>
+
+                        <a href="/delete_medicine/{{ m[0] }}"
+                           onclick="return confirm('Delete this medicine?')"
+                           class="action-btn delete">
+                            🗑 Delete
+                        </a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+
+            {% else %}
+
+                <tr>
+                    <td colspan="6" class="empty">
+                        No medicines found
+                    </td>
+                </tr>
+
+            {% endif %}
+
+        </table>
+
+    </div>
+
+    <!-- BACK -->
+    <a href="/pharmacist" class="back">
+        ⬅ Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

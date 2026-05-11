@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prescriptions - Salamtak</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#0F2854,#1C4D8D);
+    min-height:100vh;
+    padding:40px 20px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+.header{
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.header h2{
+    color:#1C4D8D;
+    font-size:32px;
+    margin-bottom:5px;
+}
+
+.header p{
+    color:gray;
+}
+
+/* SEARCH */
+.search-box{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.search-box input{
+    padding:12px;
+    width:60%;
+    border-radius:8px;
+    border:1px solid #ccc;
+    outline:none;
+    transition:0.3s;
+}
+
+.search-box input:focus{
+    border-color:#1C4D8D;
+    box-shadow:0 0 5px rgba(28,77,141,0.3);
+}
+
+.search-box button{
+    padding:12px 18px;
+    background:#1C4D8D;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-left:5px;
+}
+
+.search-box button:hover{
+    background:#163d73;
+}
+
+/* TABLE */
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#1C4D8D;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+tr:hover{
+    background:#f5f9ff;
+}
+
+/* BADGE */
+.badge{
+    background:#e8f1ff;
+    color:#1C4D8D;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 20px;
+    background:#f1f5f9;
+    color:#1C4D8D;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#dbe7f7;
+}
+
+/* NO DATA */
+.no-data{
+    text-align:center;
+    color:gray;
+    padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h2>💊 Prescriptions</h2>
+        <p>View and manage patient prescriptions</p>
+    </div>
+
+    <!-- SEARCH -->
+    <form class="search-box" method="GET" action="/prescriptions">
+        <input type="text"
+               name="search"
+               placeholder="Search by ID, doctor, patient or date..."
+               value="{{ search }}">
+        <button type="submit">🔍 Search</button>
+    </form>
+
+    <!-- TABLE -->
+    <div class="table-wrapper">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Doctor</th>
+                <th>Patient</th>
+                <th>Date</th>
+            </tr>
+
+            {% if prescriptions %}
+                {% for p in prescriptions %}
+                <tr>
+                    <td>{{ p[0] }}</td>
+                    <td><strong>{{ p[1] }}</strong></td>
+                    <td>{{ p[2] }}</td>
+                    <td>
+                        <span class="badge">{{ p[3] }}</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" class="no-data">
+                        No prescriptions found
+                    </td>
+                </tr>
+            {% endif %}
+
+        </table>
+
+    </div>
+
+    <a href="/admin" class="back-btn">
+        ⬅ Back to Admin Panel
+    </a>
+
+</div>
+
+</body>
+</html>

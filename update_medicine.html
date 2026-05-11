@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update Medicine</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#0F2854,#1C4D8D);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:550px;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+h2{
+    text-align:center;
+    color:#1C4D8D;
+    margin-bottom:10px;
+    font-size:30px;
+}
+
+.subtitle{
+    text-align:center;
+    color:gray;
+    margin-bottom:30px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#1C4D8D;
+    font-weight:bold;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+    transition:0.3s;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#1C4D8D;
+    box-shadow:0 0 8px rgba(28,77,141,0.2);
+    outline:none;
+}
+
+textarea{
+    resize:none;
+    height:120px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#1C4D8D,#0F2854);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.back-btn{
+    display:block;
+    margin-top:20px;
+    text-align:center;
+    text-decoration:none;
+    color:#1C4D8D;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>💊 Update Medicine</h2>
+<p class="subtitle">Edit medicine details and stock</p>
+
+<form method="POST">
+
+<div class="form-group">
+<label>Medicine Name</label>
+<input type="text" name="name" value="{{ medicine[1] }}" required>
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<textarea name="description" required>{{ medicine[2] }}</textarea>
+</div>
+
+<div class="form-group">
+<label>Price</label>
+<input type="number" step="0.01" name="price" value="{{ medicine[3] }}" required>
+</div>
+
+<div class="form-group">
+<label>Stock</label>
+<input type="number" name="stock" value="{{ medicine[4] }}" required>
+</div>
+
+<button type="submit">
+    ✔ Update Medicine
+</button>
+
+</form>
+
+<a href="/admin" class="back-btn">
+    ⬅ Back to Admin Panel
+</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pharmacist Dashboard - Salamtak</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='icon2.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: linear-gradient(135deg, #0F2854, #1C4D8D);
+            color: #333;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: #1C4D8D;
+        }
+
+        .logout {
+            background: #1C4D8D;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        h3 {
+            color: #1C4D8D;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #1C4D8D;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f2f6ff;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .low {
+            background: #e74c3c;
+        }
+
+        .ok {
+            background: #2ecc71;
+        }
+        .add {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #1C4D8D;
+            font-weight: bold;
+        }
+
+        .add:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h2>Pharmacist Dashboard</h2>
+    <a href="/logout" class="logout">Logout</a>
+</div>
+
+<div class="container">
+
+    <!-- PRESCRIPTIONS -->
+    <div class="card">
+        <h3><i class="fa fa-prescription"></i> Prescriptions</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Notes</th>
+            </tr>
+
+            {% for p in prescriptions %}
+            <tr>
+                <td>{{ p[0] }}</td>
+                <td>{{ p[3] }}</td>
+                <td>{{ p[2] }}</td>
+                <td>{{ p[4] }}</td>
+                <td>{{ p[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- MEDICINES -->
+    <div class="card">
+        <h3><i class="fa fa-pills"></i> Medicines Stock</h3>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+            </tr>
+
+            {% for m in medicines %}
+            <tr>
+                <td>{{ m[0] }}</td>
+                <td>{{ m[1] }}</td>
+                <td>{{ m[3] }}</td>
+                <td>{{ m[4] }}</td>
+
+                <td>
+                    {% if m[4] < 10 %}
+                        <span class="badge low">Low Stock</span>
+                    {% else %}
+                        <span class="badge ok">Available</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

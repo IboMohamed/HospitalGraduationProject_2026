@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Salamtak</title>
+
+<link rel="icon" href="{{ url_for('static', filename='icon2.png') }}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    * {
+        box-sizing: border-box; /* 🔥 مهم جدًا يحل مشكلة خروج العناصر */
+    }
+
+    body {
+        font-family: Arial;
+        background: linear-gradient(135deg, #0F2854, #1C4D8D);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .box {
+        background: white;
+        padding: 40px;
+        border-radius: 18px;
+        width: 400px;
+        text-align: center;
+        box-shadow: 0 15px 35px rgba(209, 26, 26, 0.25);
+    }
+
+    /* 🔥 اللوجو */
+    .logo img {
+        width: 200px; /* كبرناه */
+        margin-top: 0px;
+        margin-bottom: 5px;
+        transition: 0.3s;
+    }
+
+    .logo img:hover {
+        transform: scale(1.1);
+    }
+
+    .logo h3 {
+        margin: 5px 0 15px;
+        color: #0F2854;
+    }
+
+    h2 {
+        margin-top: 0px;
+        margin-bottom: 20px;
+        color: #1C4D8D;
+    }
+
+    .input-group {
+        position: relative;
+        width: 100%;
+    }
+
+    .input-group i {
+        position: absolute;
+        left: 12px;
+        top: 14px;
+        color: #888;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 12px 12px 40px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    input:focus {
+        border-color: #1C4D8D;
+        outline: none;
+        box-shadow: 0 0 5px rgba(28,77,141,0.3);
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #1C4D8D;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #163a6b;
+    }
+
+    .remember {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .remember input {
+        width: auto;
+        margin-right: 5px;
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
+    }
+
+    .register-btn {
+        display: block;
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        border: 2px solid #1C4D8D;
+        color: #1C4D8D;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .register-btn:hover {
+        background: #1C4D8D;
+        color: white;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="logo">
+    <img src="{{ url_for('static', filename='icon2.png') }}">
+
+</div>
+
+<h2>Login</h2>
+
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+
+    <div class="input-group">
+        <i class="fa fa-user"></i>
+        <input name="username" placeholder="Username" required>
+    </div>
+
+    <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input name="password" type="password" placeholder="Password" required>
+    </div>
+
+    <div class="remember">
+        <input type="checkbox" name="remember">
+        <label>Remember Me</label>
+    </div>
+
+    <button type="submit">Login</button>
+</form>
+
+<a href="/register" class="register-btn">
+    Create New Account
+</a>
+```
+
+</div>
+
+</body>
+</html>
+
+
